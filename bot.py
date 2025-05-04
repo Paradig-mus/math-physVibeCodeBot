@@ -15,7 +15,7 @@ load_dotenv()
 
 # === Configuration ===
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-ADMIN_ID = int(os.getenv("ADMIN_ID")
+ADMIN_ID = int(os.getenv("ADMIN_ID"))
 DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "downloads")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
