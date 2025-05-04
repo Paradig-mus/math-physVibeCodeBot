@@ -10,6 +10,8 @@ from telegram.ext import (
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from PyPDF2 import PdfReader
+from dotenv import load_dotenv
+load_dotenv()
 
 # === Configuration ===
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
