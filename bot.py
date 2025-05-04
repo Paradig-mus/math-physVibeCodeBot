@@ -146,20 +146,37 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-# === Main ===
-def main():
-    # 1) Проверяем, что нет webhook (если был)
-    #    Это асинхронный вызов, оборачиваем в run_until_complete:
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
-    app.bot.delete_webhook()  
+async def main():
+    from telegram.ext import Application
+    from telegram.ext import Defaults
+    from telegram import Bot
 
-    # 2) Добавляем handlers
+    # Получаем переменные из среды
+    port = int(os.getenv("PORT", 8080))
+    webhook_path = "/webhook"
+    hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+    if not hostname:
+        raise RuntimeError("RENDER_EXTERNAL_HOSTNAME не установлена")
+
+    # Создаем приложение
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
+
+    # Регистрируем handlers
     app.add_handler(MessageHandler(filters.Document.MimeType("application/pdf"), handle_document))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
 
-    # 3) Запускаем polling, сбрасывая все старые апдейты
-    #    drop_pending_updates=True устранит конфликт
-    app.run_polling(drop_pending_updates=True)
+    # Удаляем старые webhook-и
+    await app.bot.delete_webhook()
+
+    # Запускаем Webhook
+    await app.run_webhook(
+        listen="0.0.0.0",
+        port=port,
+        webhook_path=webhook_path,
+        webhook_url=f"https://{hostname}{webhook_path}",
+        drop_pending_updates=True,
+    )
 
 if __name__ == '__main__':
-    main()
+    import asyncio
+    asyncio.run(main())
