@@ -12,7 +12,7 @@ from psycopg2.extras import RealDictCursor
 from PyPDF2 import PdfReader
 
 # === Configuration ===
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "7911705417:AAFLDZYlEfFwAFWFmBjGkTVOK1tEJygBwpo")
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "00")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "123456789"))
 DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "downloads")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
