@@ -19,7 +19,7 @@ ADMIN_ID = int(os.getenv("ADMIN_ID")
 DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "downloads")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-PG_DSN = os.getenv("PG_DSN", "postgresql://user:pass@localhost:5432/dbname")
+PG_DSN = os.getenv("PG_DSN")
 GEMINI_URL = "https://gemini.googleapis.com/v1/chat"
 GEMINI_MODEL = "models/gemini-2.5-flash-preview-04-17"
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
