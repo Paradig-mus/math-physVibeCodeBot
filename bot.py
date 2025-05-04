@@ -13,9 +13,12 @@ from PyPDF2 import PdfReader
 from dotenv import load_dotenv
 load_dotenv()
 
+
 # === Configuration ===
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID"))
+print("BOT_TOKEN:", os.getenv("BOT_TOKEN"))
+print("ADMIN_ID:", os.getenv("ADMIN_ID"))
 DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "downloads")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
