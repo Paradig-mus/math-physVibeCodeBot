@@ -12,15 +12,15 @@ from psycopg2.extras import RealDictCursor
 from PyPDF2 import PdfReader
 
 # === Configuration ===
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "00")
-ADMIN_ID = int(os.getenv("ADMIN_ID", "123456789"))
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID")
 DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "downloads")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 PG_DSN = os.getenv("PG_DSN", "postgresql://user:pass@localhost:5432/dbname")
 GEMINI_URL = "https://gemini.googleapis.com/v1/chat"
 GEMINI_MODEL = "models/gemini-2.5-flash-preview-04-17"
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 logging.basicConfig(level=logging.INFO)
 
